@@ -10,6 +10,7 @@ for (var i = 0; i < digitalData.bag.products.length; i++) {
     'quantity': product.quantity
   });
 }
+
 ga('ec:setAction', 'purchase', {
   'id': digitalData.orderId,
   'revenue': digitalData.bag.totals.grandTotal,
@@ -17,4 +18,5 @@ ga('ec:setAction', 'purchase', {
   'shipping': digitalData.delivery.price,
   'coupon': digitalData.bag.promocodes
 });
+
 ga('send', 'pageview');

@@ -40,4 +40,21 @@ switch (window.digitalData.site.country) {
 
 ga('create', gaid, 'auto');
 ga('require', 'ec');
-ga('send', 'pageview');
+
+ga( 'set', { 'dimension1': digitalData.site.country } );
+ga( 'set', { 'dimension2': digitalData.site.language } );
+
+// If customer has an ID set (if they are logged in), set this as a custom dimension.
+if (digitalData.customer.id.length > 0) {
+  ga( 'set', { 'dimension3': digitalData.customer.id } );
+}
+
+// If the page is a Checkout page or Order Confirmation page, do not fire regular pageviews as we send VPVs or custom pageviews for these.
+if ( (digitalData.page.instanceID.indexOf('_Checkout') >= 0) || (digitalData.page.instanceID.indexOf('_OrderConfirmation') >= 0) ) {
+// Do not send anything.
+}
+
+else {
+  // Send a regular pageview.
+  ga('send', 'pageview');
+}

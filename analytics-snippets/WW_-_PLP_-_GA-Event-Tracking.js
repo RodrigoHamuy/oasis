@@ -1,7 +1,5 @@
 $(function(){
-
-  console.log('PLP page');
-
+  
   // When the user sets their display preferences at the top of the PLP
   $('body').on('click', '.top_filters', function(){
     var label = $(this).find('.active').text(); // Get the new label of the filter clicked on (i.e. what it has changed to)

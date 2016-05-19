@@ -25,8 +25,7 @@ $(function(){
     ga(
       'send',
       'event',
-      'Wishlist',
-      'Click - Share'
+      'Share wished items'
     );
   });
 
@@ -42,6 +41,7 @@ $(function(){
   function addToBagSubmitEvent(wishlistItemID, wishlistItemName, wishlistItemCategory) {
     var clickedItemSKU = $('li#' + wishlistItemID).find('.saved_item_image > img').attr('src').split('/').pop().split('_')[1].split('.')[0];
     var daysInWishlist = $('li#' + wishlistItemID).find('.item-expiresin').text().replace(/\D/g,'');
+    ga( 'set', { 'dimension5': daysInWishlist } );
     ga('ec:addProduct',{
       'id': clickedItemSKU,
       'name': wishlistItemName,

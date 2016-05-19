@@ -58,3 +58,6 @@ else {
   // Send a regular pageview.
   ga('send', 'pageview');
 }
+
+// Enable secondary GA tracking for tracking extra events
+var secondaryGATracking = true;

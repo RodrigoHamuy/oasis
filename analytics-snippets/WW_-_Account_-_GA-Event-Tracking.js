@@ -20,6 +20,18 @@ $(function(){
     );
   });
 
+  // Track item removal from Wishlist
+  $('body').on('click', '.saved-item-delete', function() {
+    var removedProductSKU = $(this).parents().eq(2).find('input[name="pid"]').val().substring(0,8);
+    ga(
+      'send',
+      'event',
+      'Saved Items',
+      'Remove an item',
+      removedProductSKU
+    );
+  });
+
   // Click to send Saved Items to a friend
   $('a#send-to-friend').click(function(){
     ga(

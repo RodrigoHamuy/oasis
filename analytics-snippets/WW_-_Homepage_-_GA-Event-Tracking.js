@@ -6,7 +6,7 @@ $(function() {
   });
 
   // If secondary GA tracking is enabled
-  if (secondaryGATracking == true) {
+  if (window.secondaryGATracking == true) {
 
     // Add data attributes to identify rows and boxes.
     $('.content_row').each(function(index){

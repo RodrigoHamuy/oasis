@@ -1,5 +1,8 @@
 // Create the appropriate Google Analytics tracker based on the user's selected country.
 
+// Enable secondary GA tracking for tracking extra events
+window.secondaryGATracking = true;
+
 var gaid;
 
 switch (window.digitalData.site.country) {
@@ -58,6 +61,3 @@ else {
   // Send a regular pageview.
   ga('send', 'pageview');
 }
-
-// Enable secondary GA tracking for tracking extra events
-var secondaryGATracking = true;

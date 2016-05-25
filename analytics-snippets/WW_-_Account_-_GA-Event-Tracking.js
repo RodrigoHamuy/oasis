@@ -10,8 +10,8 @@ $(function(){
     );
   });
 
-  // Fire an event when the user registers
-  $('#RegistrationForm').submit(function(){
+  // Fire an event when the user registers on the /account page
+   $('.registration_form_content #RegistrationForm').submit(function(){
     ga(
       'send',
       'event',
@@ -19,6 +19,18 @@ $(function(){
       'Register'
     );
   });
+
+  // Track when user opts in to newsletter once logged in
+  $('#edit-profile-btn').click(function(){
+    setTimeout(function(){ // Set delay to wait for modal to appear
+      $('#RegistrationForm').submit(function(){
+        if ( ($('input#dwfrm_profile_customer_addtoemaillist:checked').length > 0) == true ) {
+          ga('send', 'event', 'Newsletter sign up', 'Submit', 'via account settings' );
+        }
+      });
+    }, 1000);
+  });
+
 
   // Track item removal from Wishlist
   $('body').on('click', '.saved-item-delete', function() {

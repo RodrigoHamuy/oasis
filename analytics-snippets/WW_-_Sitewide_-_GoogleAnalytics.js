@@ -50,6 +50,7 @@ ga( 'set', { 'dimension2': digitalData.site.language } );
 // If customer has an ID set (if they are logged in), set this as a custom dimension.
 if (digitalData.customer.id.length > 0) {
   ga( 'set', { 'dimension3': digitalData.customer.id } );
+  ga( 'set', 'userId', digitalData.customer.id );
 }
 
 // If the page is a Checkout page or Order Confirmation page, do not fire regular pageviews as we send VPVs or custom pageviews for these.

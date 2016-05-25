@@ -12,4 +12,9 @@ $(function(){
     ga('send', 'event', 'Social', 'Click', $(this).find('.link_label').text());
   });
 
+  // Newsletter signup in the footer.
+  $( '.newsletter-signup' ).on( 'submit', '#sign-up', function(){
+  	ga('send', 'event', 'Newsletter sign up', 'Submit', 'via footer' );
+  });
+
 });

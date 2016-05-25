@@ -46,11 +46,18 @@ $(function(){
 
   // Click to send Saved Items to a friend
   $('a#send-to-friend').click(function(){
-    ga(
-      'send',
-      'event',
-      'Share wished items'
-    );
+    $('li.wishlist-item').each(function(){
+      var wishlistItemSku = $(this).find('.product-tile').attr('data-itemid').substring(0,8);
+      var wishlistItemCategory = $(this).find('.saved_item_image').attr('href').split('/')[5];
+
+      ga(
+        'send',
+        'event',
+        'Share wished items',
+        wishlistItemCategory,
+        wishlistItemSku
+      );
+    });
   });
 
   /* When user adds an item from their Wishlist into their bag

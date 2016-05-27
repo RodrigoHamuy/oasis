@@ -44,6 +44,38 @@ $(function(){
     );
   });
 
+  // Track item edit from wishlist
+  $('body').on('click', '.quickviewbutton.edit_btn', function(){
+    var editedItemCategory = $(this).parents('.product-tile').find('a.saved_item_image').attr('href').split('/')[5];
+    var editedItemSKU = $(this).parents('.product-tile').attr('data-itemid').substring(0,8);
+    ga(
+      'send',
+      'event',
+      'Edit saved items',
+      editedItemCategory,
+      editedItemSKU
+    );
+  });
+
+  // When a user drags and drops items in their wishlist, fire an event. Wait until the window has loaded for jQuery Sortable to initialise. NEEDS WORK!
+  $(window).load(function(){
+    // Fire event by attaching the change listener to the jQuery UI Sortable plugin.
+    $("#wishlist-items-container").sortable({
+      change: function( event, ui ) {
+        var movedItem = ui.item[0];
+        var movedItemCategory = $(movedItem).find('.saved_item_image').attr('href').split('/')[5];
+        var movedItemSKU = $(movedItem).find('.saved_item_image > img').attr('src').split('/').pop().split('_')[1];
+        ga(
+          'send',
+          'event',
+          'Drag and drop saved items',
+          movedItemCategory,
+          movedItemSKU
+        );
+      }
+    });
+  });
+
   // Click to send Saved Items to a friend
   $('a#send-to-friend').click(function(){
     $('li.wishlist-item').each(function(){
